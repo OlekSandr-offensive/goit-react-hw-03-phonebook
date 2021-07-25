@@ -10,8 +10,6 @@ class App extends React.Component {
   state = {
     contacts: initialContacts,
     filter: '',
-    name: '',
-    number: '',
   };
 
   FormSubmitHandler = ({ name, number }) => {
@@ -52,7 +50,6 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log('App componentDidMount');
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
 
@@ -61,11 +58,8 @@ class App extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('App componentDidUpdate');
-
+  componentDidUpdate(prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      console.log('обновилося поле contacts');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
